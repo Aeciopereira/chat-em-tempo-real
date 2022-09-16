@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat.junior</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+ <form id="chat">
+     <imput type="text" name="username" placeholder=" digite seu usuario">
+         <div class="messages"></div>
+     <imput type="text" name="messages" placeholder="digite sua mensagem">
+         <button type="submit">enviar</button>
+<script type="text/javascript">
+    var socket = io('http://localhost:3000');
+    $('#chat').submit(function(event){
+        event.preventDefault();
+
+        var author = $('input[name=username]').val();
+        var massage = $('input[name=massage]').val();
+
+        if (author.length && massage){
+            var messageObject = {
+                author: author,
+                message: message,
+            };
+            socket.emit('sendMessage',messageObject);
+
+        }
+    });
+</script>
+
+
+</body>
+</html>
